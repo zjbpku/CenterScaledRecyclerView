@@ -40,7 +40,7 @@ public class CenterScaledRecyclerView extends RecyclerView {
     private static float TOP_TAP_REGION_PERCENTAGE = .33f;
     private static float BOTTOM_TAP_REGION_PERCENTAGE = .33f;
     // Each item will occupy one third of the height.
-    private static int THIRD = 7;
+    private static int THIRD = 5;
     private final int mMinFlingVelocity;
     private final int mMaxFlingVelocity;
     private boolean mMaximizeSingleItem;
@@ -448,7 +448,7 @@ public class CenterScaledRecyclerView extends RecyclerView {
         }
         if (index > 0 && rawY <= centerAbove) {
             int step = 0;
-            for (int i = regions / 2 - 1; i > 0; --i) {
+            for (int i = regions / 2 - 1; i >= 0; --i) {
                 if (rawY > mTapRegions[i] || index - step == 0) {
                     break;
                 }
@@ -664,7 +664,7 @@ public class CenterScaledRecyclerView extends RecyclerView {
 
     /**
      * Returns top of the central {@code View} in the list when such view is fully centered.
-     * <p/>
+     * <p>
      * This is a more or a less a static value that you can use to align other views with the
      * central one.
      */
@@ -1321,7 +1321,7 @@ public class CenterScaledRecyclerView extends RecyclerView {
         /**
          * Called when the wrapped view is becoming or ceasing to be the central item of the
          * WearableListView.
-         * <p/>
+         * <p>
          * Retained as protected for backwards compatibility.
          *
          * @hide
