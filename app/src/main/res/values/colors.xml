@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="black">#ff000000</color>
+    <color name="white">#ffffffff</color>
+    <color name="bg_color">#ececec</color>
+    <color name="page_mask">#46000000</color>
+    <color name="dict_letter_selected">#FFDFDFDF</color>
+    <color name="dict_space_bg">#9b9b9b</color>
+    <color name="dict_space_selected">#7F9B9B9B</color>
+    <color name="live_red">#50FF3516</color>
+    <color name="live_red_pressed">#80C91F19</color>
+    <color name="live_shadow">#14000000</color>
+    <color name="live_shadow_pressed">#34000000</color>
+    <color name="edit_text_hint">#2b3038</color>
+    <color name="cl_tip_bg">#174261</color>
+</resources>
