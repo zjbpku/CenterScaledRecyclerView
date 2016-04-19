@@ -1,7 +1,7 @@
-package com.fidroid.centerscaledrecycelerview;
+package com.fidroid.centerscalerecyclerview;
 
 /**
- * Created by jabin on 4/12/16.
+ * Created by jabin on 4/19/16.
  */
 //
 // Source code recreated from a .class file by IntelliJ IDEA
@@ -11,7 +11,6 @@ package com.fidroid.centerscaledrecycelerview;
 import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.PointF;
 import android.os.Handler;
@@ -31,7 +30,6 @@ import android.widget.Scroller;
 import java.util.ArrayList;
 import java.util.List;
 
-@TargetApi(20)
 public class CenterScaledRecyclerView extends RecyclerView {
     @SuppressWarnings("unused")
     private static final String TAG = "WearableRecyclerView";
@@ -113,7 +111,7 @@ public class CenterScaledRecyclerView extends RecyclerView {
     private final AdapterDataObserver mObserver = new AdapterDataObserver() {
         @Override
         public void onChanged() {
-            CenterScaledRecyclerView.this.addOnLayoutChangeListener(new OnLayoutChangeListener() {
+            CenterScaledRecyclerView.this.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
                 @Override
                 public void onLayoutChange(View v, int left, int top, int right, int bottom,
                                            int oldLeft, int oldTop, int oldRight, int oldBottom) {

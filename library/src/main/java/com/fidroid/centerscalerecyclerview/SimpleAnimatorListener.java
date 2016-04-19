@@ -1,12 +1,10 @@
-package com.fidroid.centerscaledrecycelerview;
+package com.fidroid.centerscalerecyclerview;
 
 import android.animation.Animator;
-import android.annotation.TargetApi;
 
 /**
- * Created by jabin on 4/12/16.
+ * Created by jabin on 4/19/16.
  */
-@TargetApi(20)
 public class SimpleAnimatorListener implements Animator.AnimatorListener {
     private boolean mWasCanceled;
 

@@ -10,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.fidroid.centerscalerecyclerview.CenterScaledRecyclerView;
+
 import java.util.ArrayList;
 
 public class MainActivity extends Activity implements CenterScaledRecyclerView.ClickListener {
