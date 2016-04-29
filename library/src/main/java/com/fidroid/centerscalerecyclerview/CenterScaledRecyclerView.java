@@ -61,6 +61,7 @@ public class CenterScaledRecyclerView extends RecyclerView {
     private final List<OnScrollListener> mOnScrollListeners = new ArrayList<OnScrollListener>();
     private final List<OnCentralPositionChangedListener> mOnCentralPositionChangedListeners =
             new ArrayList<OnCentralPositionChangedListener>();
+    private final List<OnCenterPositionLastSelectedListener> mOnCenterPositionLastSelectedListeners = new ArrayList<>();
     private OnOverScrollListener mOverScrollListener;
     private boolean mGreedyTouchMode;
     private float mStartX;
@@ -151,6 +152,7 @@ public class CenterScaledRecyclerView extends RecyclerView {
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 if (newState == RecyclerView.SCROLL_STATE_IDLE && getChildCount() > 0) {
                     handleTouchUp(null, newState);
+                    onCenterPositionLastSelected();
                 }
                 for (OnScrollListener listener : mOnScrollListeners) {
                     listener.onScrollStateChanged(newState);
@@ -344,6 +346,33 @@ public class CenterScaledRecyclerView extends RecyclerView {
         }
         notifyChildrenAboutProximity(true);
     }
+
+    private void onCenterPositionLastSelected() {
+        LayoutManager layoutManager = (LayoutManager) getLayoutManager();
+        int count = layoutManager.getChildCount();
+        if (count == 0) {
+            return;
+        }
+        int index = layoutManager.findCenterViewIndex();
+        final int position = getChildViewHolder(getChildAt(index)).getPosition();
+        for (OnCenterPositionLastSelectedListener listener : mOnCenterPositionLastSelectedListeners) {
+            listener.onCenterSelectedPosition(position);
+        }
+    }
+
+    /**
+     * Adds a listener that will be called when scroll is in idle mode.
+     *
+     * @param listener
+     */
+    public void addOnCenterPositionLastSelectedListener(OnCenterPositionLastSelectedListener listener) {
+        mOnCenterPositionLastSelectedListeners.add(listener);
+    }
+
+    public void removeOnCeneterPositionLastSelectedListener(OnCenterPositionLastSelectedListener listener) {
+        mOnCenterPositionLastSelectedListeners.remove(listener);
+    }
+
 
     /**
      * Adds a listener that will be called when the content of the list view is scrolled.
@@ -1159,6 +1188,18 @@ public class CenterScaledRecyclerView extends RecyclerView {
                                      RecyclerView.Adapter newAdapter) {
             removeAllViews();
         }
+    }
+
+    /***
+     * Interface for receiving callbacks when WearableRecyclerView is SCROLL_STATE_IDLE state
+     */
+    public interface OnCenterPositionLastSelectedListener {
+        /***
+         * Called when WearableRecyclerView is SCROLL_STATE_IDLE state
+         *
+         * @param position item position in adapter
+         */
+        void onCenterSelectedPosition(int position);
     }
 
     /**

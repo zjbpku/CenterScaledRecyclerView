@@ -3,6 +3,7 @@ package com.fidroid.centerscaledrecycelerview;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -15,7 +16,7 @@ import com.fidroid.centerscalerecyclerview.CenterScaledRecyclerView;
 import java.util.ArrayList;
 
 public class MainActivity extends Activity implements CenterScaledRecyclerView.ClickListener {
-
+    private static final String TAG = "MainActivity";
     private CenterScaledRecyclerView mListView;
     private MyListAdapter mAdapter;
 
@@ -27,6 +28,12 @@ public class MainActivity extends Activity implements CenterScaledRecyclerView.C
         mListView = (CenterScaledRecyclerView) findViewById(R.id.listView1);
         mAdapter = new MyListAdapter();
         mListView.setAdapter(mAdapter);
+        mListView.addOnCenterPositionLastSelectedListener(new CenterScaledRecyclerView.OnCenterPositionLastSelectedListener() {
+            @Override
+            public void onCenterSelectedPosition(int position) {
+                Log.d(TAG, "onCenterSelectedPosition: " + position);
+            }
+        });
     }
 
 
