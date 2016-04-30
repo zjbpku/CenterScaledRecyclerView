@@ -354,9 +354,10 @@ public class CenterScaledRecyclerView extends RecyclerView {
             return;
         }
         int index = layoutManager.findCenterViewIndex();
-        final int position = getChildViewHolder(getChildAt(index)).getPosition();
+        ViewHolder viewHolder = getChildViewHolder(getChildAt(index));
+        final int position = viewHolder.getPosition();
         for (OnCenterPositionLastSelectedListener listener : mOnCenterPositionLastSelectedListeners) {
-            listener.onCenterSelectedPosition(position);
+            listener.onCenterSelectedLastPosition(viewHolder, position);
         }
     }
 
@@ -1199,7 +1200,7 @@ public class CenterScaledRecyclerView extends RecyclerView {
          *
          * @param position item position in adapter
          */
-        void onCenterSelectedPosition(int position);
+        void onCenterSelectedLastPosition(ViewHolder viewHolder, int position);
     }
 
     /**

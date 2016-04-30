@@ -28,10 +28,11 @@ public class MainActivity extends Activity implements CenterScaledRecyclerView.C
         mListView = (CenterScaledRecyclerView) findViewById(R.id.listView1);
         mAdapter = new MyListAdapter();
         mListView.setAdapter(mAdapter);
+        mListView.setClickListener(this);
         mListView.addOnCenterPositionLastSelectedListener(new CenterScaledRecyclerView.OnCenterPositionLastSelectedListener() {
             @Override
-            public void onCenterSelectedPosition(int position) {
-                Log.d(TAG, "onCenterSelectedPosition: " + position);
+            public void onCenterSelectedLastPosition(CenterScaledRecyclerView.ViewHolder viewHolder, int position) {
+                Log.d(TAG, "onCenterSelectedLastPosition: view " + ((MyItemView) (viewHolder.itemView)).txtView.getText() + "   " + position);
             }
         });
     }
@@ -90,7 +91,7 @@ public class MainActivity extends Activity implements CenterScaledRecyclerView.C
         }
     }
 
-    private final class MyItemView extends FrameLayout implements CenterScaledRecyclerView.OnCenterProximityListener {
+    private class MyItemView extends FrameLayout implements CenterScaledRecyclerView.OnCenterProximityListener {
 
         final ImageView imgView;
         final TextView txtView;
