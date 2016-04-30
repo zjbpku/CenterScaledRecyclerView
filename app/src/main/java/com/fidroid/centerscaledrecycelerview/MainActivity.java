@@ -28,6 +28,7 @@ public class MainActivity extends Activity implements CenterScaledRecyclerView.C
         mListView = (CenterScaledRecyclerView) findViewById(R.id.listView1);
         mAdapter = new MyListAdapter();
         mListView.setAdapter(mAdapter);
+        mListView.setClickListener(this);
         mListView.addOnCenterPositionLastSelectedListener(new CenterScaledRecyclerView.OnCenterPositionLastSelectedListener() {
             @Override
             public void onCenterSelectedPosition(int position) {
